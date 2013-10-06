@@ -1,0 +1,27 @@
+<project name="ImageJPlugin" default="" basedir="/path/to/ImageJPluginScala/ImageJPlugin">
+    <description>
+        ComputationalGeometry (written in Java/Scala) build file
+    </description>
+  <property name="src" location="src" />
+  <property name="build" location="out/production/ImageJPlugin" />
+  <property name="dist"  location="dist" />
+  <property name="jarname"  location="ImageJPlugin_.jar" />
+  <property name="pluginsDir"  location="$basedir/../../ImageJ/plugins/" />
+ 
+  <property name="user.name" value="Your Name" />
+<target name="main" depends="compress" description="Main target">
+	<echo>
+		Building the .jar file.
+	</echo>
+</target>
+ <target name="compress" depends="" description="generate the distribution">
+ 	<jar jarfile="${jarname}">
+ 		<fileset dir="." includes="plugins.config" />
+		<fileset dir="${build}" includes="**/*.*" />
+ 		<manifest>
+ 		 	 	      <attribute name="Built-By" value="${user.name}"/>
+ 		</manifest>
+ 	</jar>
+    <copy file="${jarname}" toDir="${pluginsDir}" />
+  </target>
+</project>
